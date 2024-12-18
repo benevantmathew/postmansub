@@ -1,6 +1,17 @@
+import sys
 import tkinter as tk
 from tkinter import filedialog, messagebox
 import requests
+
+# Set a default version for standalone execution
+try:
+    # For PyPI package usage
+    from . import __version__  
+    from . import __author__  
+except ImportError:
+    # Fallback version for standalone script/executable
+    __version__ = "0.1"
+    __author__ = "Benevant Mathew"
 
 class PostRequestApp:
     def __init__(self, root):
@@ -67,7 +78,36 @@ class PostRequestApp:
         except Exception as e:
             messagebox.showerror("Error", f"Request failed: {e}")
 
-if __name__ == "__main__":
+# Function to display help
+def print_help():
+    help_message = """
+Usage: postmansub [OPTIONS]
+
+A small package to sent post requests.
+
+Options:
+  --version, -v      Show the version of postmansub and exit
+  --help, -h         Show this help message and exit
+  (No arguments)     Launch the GUI application
+    """
+    print(help_message)
+    sys.exit(0)
+
+def create_gui():
     root = tk.Tk()
     app = PostRequestApp(root)
     root.mainloop()
+    
+if __name__ == "__main__":
+    # Check for command-line arguments
+    if "--version" in sys.argv or "-v" in sys.argv:
+        print(f"version {__version__}")
+        sys.exit(0)
+    elif "--help" in sys.argv or "-h" in sys.argv:
+        print_help()
+        sys.exit(0)
+    elif "--author" in sys.argv or "-a" in sys.argv:
+        print(f"Author {__author__}")
+        sys.exit(0)
+    else:
+        create_gui()
