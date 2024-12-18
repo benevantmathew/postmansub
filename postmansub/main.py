@@ -10,7 +10,7 @@ try:
     from . import __author__  
 except ImportError:
     # Fallback version for standalone script/executable
-    __version__ = "0.1"
+    __version__ = "0.2"
     __author__ = "Benevant Mathew"
 
 class PostRequestApp:
@@ -87,6 +87,7 @@ A small package to sent post requests.
 
 Options:
   --version, -v      Show the version of postmansub and exit
+  --author, -a       Show the Author name and exit
   --help, -h         Show this help message and exit
   (No arguments)     Launch the GUI application
     """
@@ -94,6 +95,17 @@ Options:
     sys.exit(0)
 
 def create_gui():
+    # Check for command-line arguments
+    if "--version" in sys.argv or "-v" in sys.argv:
+        print(f"version {__version__}")
+        sys.exit(0)
+    elif "--help" in sys.argv or "-h" in sys.argv:
+        print_help()
+        sys.exit(0) 
+    elif "--author" in sys.argv or "-a" in sys.argv:
+        print(f"Author {__author__}")
+        sys.exit(0)
+    #######################################################
     root = tk.Tk()
     app = PostRequestApp(root)
     root.mainloop()
