@@ -17,7 +17,7 @@ setup(
     author_email="benevantmathewv@gmail.com",
     license="MIT",
     packages=find_packages(include=["postmansub"]),
-    install_requires=[],
+    install_requires=["requests"],
     entry_points={
         "console_scripts": [
             "postmansub = postmansub.main:create_gui",  # entry point

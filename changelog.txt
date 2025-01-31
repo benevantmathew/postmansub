@@ -3,3 +3,9 @@ Version 0.1
     1.can sent post request to given url.
     2.simple form data input option.
     3.Files can be attached in post request.
+Version 0.2
+    Date 18-12-2024
+    1.some small bugfix
+Version 0.33
+    Date 31-01-2025
+    1.key value pair considered as json data. Previously we were sending the pair in variable data.
